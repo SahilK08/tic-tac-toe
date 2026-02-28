@@ -1,0 +1,76 @@
+.cell {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight transparent fill */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 800;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.cell:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+}
+
+.cell.x-mark {
+    color: var(--x-color);
+    text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.cell.o-mark {
+    color: var(--o-color);
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+}
+
+.cell-content {
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.cell.winning {
+    background: rgba(255, 255, 255, 0.1);
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) inset;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .cell {
+        border-radius: 0.75rem;
+    }
+}
